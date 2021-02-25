@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<title>WINDOW 11</title>
+<link rel="icon" href="./logo2.png"/>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  background-image: url('https://www.itl.cat/pngfile/big/229-2294043_windows-xp-animated.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed; 
+  background-size: 100% 100%;
+}
+
+.bbar {
+  overflow: show;
+  background-color: #333;  
+  position: fixed;
+  bottom: 0;
+left: 30;
+  width: 100%;
+width-left: 100%;
+}
+
+.bbar a {
+  float: left;
+  display: border;
+  color: #f2f2f2;
+  padding: 0px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.bbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.bbar a.active {
+  background-color: transparent;
+  color: white;
+}
+
+.bbar .icon {
+  display: none;
+}
+
+@media screen and (max-width: auto) {
+  .bbar a:not(:first-child) {display: none;}
+  .bbar a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+@media screen and (max-width: auto) {
+  .bbar.responsive .icon {
+    position: absolute;
+    right: 0;
+    bottom:0;
+  }
+  .bbar.responsive a {
+    float: none;
+    display: border;
+    text-align: left;
+  }
+
+}
+#items{
+  list-style:none;
+  margin:0px;
+  margin-top:4px;
+  padding-left:10px;
+  padding-right:10px;
+  padding-bottom:3px;
+  font-size:17px;
+  color: #333333;
+  
+}
+hr { width: 85%; 
+  background-color:#E4E4E4;
+  border-color:#E4E4E4;
+    color:#E4E4E4;
+}
+#cntnr{
+  display:none;
+  position:fixed;
+  border:1px solid #B2B2B2;
+  width:150px;      background:#F9F9F9;
+  box-shadow: 3px 3px 2px #E9E9E9;
+  border-radius:4px;
+}
+
+li{
+  
+  padding: 3px;
+  padding-left:10px;
+}
+
+
+#items :hover{
+   color: white;
+  background:#284570;
+  border-radius:2px;
+}
+</style>
+</head>
+<body>
+  
+<div class="bbar" id="myNavbar">
+  <a href="#logo" class="active"><img src="logo2.png" width="20" height="20"/></a>
+ 
+  <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()"></a>
+</div>
+
+<div style="padding-left:16px">
+  <p><img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/b8e666be-9958-492b-9576-fa26ebfca2c6/d1rxm83-3fca3df4-3a80-4b8b-8e86-d8375c7f1bbb.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvYjhlNjY2YmUtOTk1OC00OTJiLTk1NzYtZmEyNmViZmNhMmM2XC9kMXJ4bTgzLTNmY2EzZGY0LTNhODAtNGI4Yi04ZTg2LWQ4Mzc1YzdmMWJiYi5wbmcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.cC1BHJA959s3zD2hcFtKzamHRGUCHKxdUgYcha7wPaU" width="50" height="50"/></p>
+
+</div>
+
+<script>
+function myFunction() {
+  var x = document.getElementById("myNavbar");
+  if (x.className === "bbar") {
+    x.className += " responsive";
+  } else {
+    x.className = "bbar";
+  }
+}
+</script>
+
+</body>
+<!-- Load the plugin -->
+<script src="./CtxMenu.js"></script>
+
+<script>
+
+	function ContextMenuExampleFunction(){
+		alert("Hello World!");
+	}
+
+	var contextMenu = CtxMenu();
+
+
+	contextMenu.addItem("Properties", ContextMenuExampleFunction);
+
+	contextMenu.addSeparator();
+
+	contextMenu.addItem("Refresh",
+		function(){
+			location.reload();
+		},
+		Icon = "icon.png",
+		index = undefined,
+		bInvertIconDarkMode = true
+	);
+	
+	function ChangeElementColor(element){
+		var color = [
+			Math.random() * 255,
+			Math.random() * 255,
+			Math.random() * 255
+		];
+		element.style.background = "rgb(" + color + ")"
+	}
+	var contextMenuTwo = CtxMenu("#CustomContextMenu");
+	contextMenuTwo.addItem("Change Color", ChangeElementColor);
+
+</script>
+</html>
