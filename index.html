@@ -1,45 +1,29 @@
 <!DOCTYPE html>
 <html>
+<head>
 <title>WINDOW 11</title>
 <link rel="icon" href="./logo2.png"/>
-
-<head>
-<script src="./CtxMenu.js"></script>
-<script>
-
-	function ContextMenuExampleFunction(){
-		alert("Sample Window Page Create By Alexander Eric!");
-	}
-
-	var contextMenu = CtxMenu();
-
-
-	contextMenu.addItem("Properties", ContextMenuExampleFunction);
-
-	contextMenu.addSeparator();
-
-	contextMenu.addItem("Refresh",
-		function(){
-			location.reload();
-		},
-		Icon = "icon.png",
-		index = undefined,
-		bInvertIconDarkMode = true
-	);
-	
-	function ChangeElementColor(element){
-		var color = [
-			Math.random() * 255,
-			Math.random() * 255,
-			Math.random() * 255
-		];
-		element.style.background = "rgb(" + color + ")"
-	}
-	var contextMenuTwo = CtxMenu("#CustomContextMenu");
-	contextMenuTwo.addItem("Change Color", ChangeElementColor);
-
-</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+<script>
+var isNS = (navigator.appName == "Netscape") ? 1 : 0;
+if(navigator.appName == "Netscape") document.captureEvents(Event.MOUSEDOWN||Event.MOUSEUP);
+function mischandler(){
+return false;
+}
+function mousehandler(e){
+var myevent = (isNS) ? e : event;
+var eventbutton = (isNS) ? myevent.which : myevent.button;
+if((eventbutton==2)||(eventbutton==3)) return false;
+}
+document.oncontextmenu = mischandler;
+document.onmousedown = mousehandler;
+document.onmouseup = mousehandler;
+</script>
 <style>
 body {
   background-image: url('https://www.itl.cat/pngfile/big/229-2294043_windows-xp-animated.jpg');
@@ -164,7 +148,41 @@ function myFunction() {
   }
 }
 </script>
+<script src="./CtxMenu.js"></script>
+<script>
 
+	function ContextMenuExampleFunction(){
+		alert("Sample Window Page Create By Alexander Eric!");
+	}
+
+	var contextMenu = CtxMenu();
+
+
+	contextMenu.addItem("Properties", ContextMenuExampleFunction);
+
+	contextMenu.addSeparator();
+
+	contextMenu.addItem("Refresh",
+		function(){
+			location.reload();
+		},
+		Icon = "icon.png",
+		index = undefined,
+		bInvertIconDarkMode = true
+	);
+	
+	function ChangeElementColor(element){
+		var color = [
+			Math.random() * 255,
+			Math.random() * 255,
+			Math.random() * 255
+		];
+		element.style.background = "rgb(" + color + ")"
+	}
+	var contextMenuTwo = CtxMenu("#CustomContextMenu");
+	contextMenuTwo.addItem("Change Color", ChangeElementColor);
+
+</script>
 </body>
 
 
