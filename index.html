@@ -4,27 +4,7 @@
 <title>WINDOW 11</title>
 <link rel="icon" href="./logo2.png"/>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./CtxMenu.js"></script>
-<script>
-  if (document.location.search.match(/type=embed/gi)) {
-    window.parent.postMessage("resize", "*");
-  }
-</script>
-<script>
-var isNS = (navigator.appName == "Netscape") ? 1 : 0;
-if(navigator.appName == "Netscape") document.captureEvents(Event.MOUSEDOWN||Event.MOUSEUP);
-function mischandler(){
-return false;
-}
-function mousehandler(e){
-var myevent = (isNS) ? e : event;
-var eventbutton = (isNS) ? myevent.which : myevent.button;
-if((eventbutton==2)||(eventbutton==3)) return false;
-}
-document.oncontextmenu = mischandler;
-document.onmousedown = mousehandler;
-document.onmouseup = mousehandler;
-</script>
+
 <style>
 body {
   background-image: url('https://www.itl.cat/pngfile/big/229-2294043_windows-xp-animated.jpg');
@@ -125,32 +105,38 @@ li{
   border-radius:2px;
 }
 </style>
+
 </head>
-<body>
-  
-<div class="bbar" id="myNavbar">
-  <a href="#logo" class="active"><img src="logo2.png" width="20" height="20"/></a>
- 
-  <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()"></a>
-</div>
-
-<div style="padding-left:16px">
-  <p><img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/b8e666be-9958-492b-9576-fa26ebfca2c6/d1rxm83-3fca3df4-3a80-4b8b-8e86-d8375c7f1bbb.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvYjhlNjY2YmUtOTk1OC00OTJiLTk1NzYtZmEyNmViZmNhMmM2XC9kMXJ4bTgzLTNmY2EzZGY0LTNhODAtNGI4Yi04ZTg2LWQ4Mzc1YzdmMWJiYi5wbmcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.cC1BHJA959s3zD2hcFtKzamHRGUCHKxdUgYcha7wPaU" width="50" height="50"/></p>
-
-</div>
-
+<header>
+<script src="./CtxMenu.js"></script>  
 <script>
-function myFunction() {
-  var x = document.getElementById("myNavbar");
-  if (x.className === "bbar") {
-    x.className += " responsive";
-  } else {
-    x.className = "bbar";
-  }
+function CtxMenu(element){
+	// Initialize a context menu
+	if (element == undefined){
+		element = document;
+	}
+	if (ctxMenuManager.getMenuFromElement(element) != undefined) {
+		return ctxMenuManager.getMenuFromElement(element);
+	}
+	return ctxMenuManager.createNewMenu(element);
 }
-</script>
 
-<script>
+function CtxMenuBlock(element){
+	// Block the context menu from appearing on an element
+	ctxMenuManager.setCustomContexMenuValue(element, false);
+}
+
+function CtxMenuDefault(element){
+	// Set an element to use the browsers default context menu
+	ctxMenuManager.setCustomContexMenuValue(element, true);
+}
+
+function CtxCloseCurrentlyOpenedMenus(){
+	ctxMenuManager.closeCurrentlyOpenedMenu();
+}
+
+// Initialize the ctxMenuManager
+var ctxMenuManager = new CtxMenuManagerClass();
 
 	function ContextMenuExampleFunction(){
 		alert("Sample Window Page Create By Alexander Eric!");
@@ -184,7 +170,29 @@ function myFunction() {
 	contextMenuTwo.addItem("Change Color", ChangeElementColor);
 
 </script>
+</header>
+<body>
+
+<div class="bbar" id="myNavbar">
+  <a href="#logo" class="active"><img src="logo2.png" width="20" height="20"/></a>
+ 
+  <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()"></a>
+</div>
+
+<div style="padding-left:16px">
+  <p><img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/b8e666be-9958-492b-9576-fa26ebfca2c6/d1rxm83-3fca3df4-3a80-4b8b-8e86-d8375c7f1bbb.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvYjhlNjY2YmUtOTk1OC00OTJiLTk1NzYtZmEyNmViZmNhMmM2XC9kMXJ4bTgzLTNmY2EzZGY0LTNhODAtNGI4Yi04ZTg2LWQ4Mzc1YzdmMWJiYi5wbmcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.cC1BHJA959s3zD2hcFtKzamHRGUCHKxdUgYcha7wPaU" width="50" height="50"/></p>
+
+</div>
+
+<script>
+function myFunction() {
+  var x = document.getElementById("myNavbar");
+  if (x.className === "bbar") {
+    x.className += " responsive";
+  } else {
+    x.className = "bbar";
+  }
+}
+</script>
 </body>
-
-
 </html>
